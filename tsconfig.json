@@ -1,0 +1,12 @@
+{
+  "include": ["renderer/**/*"],
+  "exclude": ["main/**/*"],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "allowJs": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "strict": false
+  }
+}
