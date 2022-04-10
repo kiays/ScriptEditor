@@ -1,4 +1,5 @@
 import React, { FC, MutableRefObject, useEffect, useRef } from "react";
+import WaveForm from "./WaveForm";
 
 type Props = {
 
@@ -6,6 +7,7 @@ type Props = {
 
 const CsvEditor: FC<Props> = ({ }) => {
     const canvas: MutableRefObject<HTMLCanvasElement> = useRef(null);
+
     useEffect(() => {
         if (!canvas || !canvas.current) return;
         const cvs = canvas.current;
@@ -15,6 +17,7 @@ const CsvEditor: FC<Props> = ({ }) => {
 
     return (<div>
         <canvas ref={canvas}></canvas>
+        <WaveForm />
     </div>)
 }
 
