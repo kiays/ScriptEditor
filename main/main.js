@@ -12,6 +12,7 @@ const createWindow = () => {
   mainWindow.webContents.on(
     "select-bluetooth-device",
     (event, deviceList, callback) => {
+      console.log("select bluetooth device callback")
       event.preventDefault();
       if (deviceList && deviceList.length > 0) {
         console.log(deviceList);

@@ -14,11 +14,11 @@ const detectDevice = (): Promise<BluetoothRemoteGATTCharacteristic> => {
         ],
       })
       .then((device: BluetoothDevice) => {
-        window.device = device;
         console.log("connect to gatt server: ", device);
         device.addEventListener("gattserverdisconnected", () => {
           device.gatt.disconnect();
         });
+        window.addEventListener("beforeunload", () => { device.gatt.disconnect(); })
         return device.gatt.connect();
       })
       .then((gattServer: BluetoothRemoteGATTServer) =>
@@ -38,16 +38,19 @@ export const useBluetooth = (): {
   device: BluetoothRemoteGATTCharacteristic | null;
   requestDevice: () => void;
 } => {
-  const [char, setChar] = useState(null);
+  const [char, setChar] = useState<BluetoothRemoteGATTCharacteristic | null>(null);
   const [connecting, setConnecting] = useState(false);
   return {
     device: char,
-    connected: char != null && char.connected,
+    connected: char != null && char.service.device?.gatt?.connected,
     connecting,
     requestDevice: () => {
       setConnecting(true);
       detectDevice()
-        .then(setChar)
+        .then((characteristic) => {
+          setChar(characteristic);
+
+        })
         .finally(() => setConnecting(false));
     },
   };
