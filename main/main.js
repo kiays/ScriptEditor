@@ -1,7 +1,8 @@
 const { BrowserWindow, ipcMain, app } = require("electron");
 
+let mainWindow
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -32,4 +33,14 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", async () => {
   if (process.platform !== "darwin") app.quit();
+});
+
+app.on("before-quit", async (e) => {
+  console.log("before quit")
+  mainWindow.send("quit");
+  e.preventDefault();
+  return new Promise(res => {
+    console.log("send quit")
+    setTimeout(() =>{app.exit()} , 1000);
+  })
 });
