@@ -1,9 +1,5 @@
 import React, { FC } from "react";
 
-type Props = {
-
-};
-
 const csv = [
   [0, 0, 0, 0, 0],
   [100, 1, 30, 1, 40],
@@ -16,7 +12,7 @@ const csv = [
   [800, 0, 30, 0, 40],
 ]
 
-const GraphicalEditor: FC<Props> = ({ }) => {
+const GraphicalEditor: FC = () => {
   return (<div>
     <svg
       viewBox="0 0 800 100"
