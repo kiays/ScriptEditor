@@ -22,15 +22,11 @@ const detectDevice = (setChar: (any) => void): Promise<BluetoothRemoteGATTCharac
         window.addEventListener("beforeunload", () => {
           device.gatt.disconnect();
           setChar(null);
-        })
+        });
         return device.gatt.connect();
       })
-      .then((gattServer: BluetoothRemoteGATTServer) =>
-        gattServer.getPrimaryServices()
-      )
-      .then((services) =>
-        services[0].getCharacteristic("40ee0202-63ec-4b7f-8ce7-712efd55b90e")
-      )
+      .then((gattServer: BluetoothRemoteGATTServer) => gattServer.getPrimaryServices())
+      .then((services) => services[0].getCharacteristic("40ee0202-63ec-4b7f-8ce7-712efd55b90e"))
       .then(resolve)
       .catch(reject);
   });
@@ -50,7 +46,7 @@ export const useBluetooth = (): {
     };
     ipcRenderer.addListener("quit", disconnect);
     return () => ipcRenderer.removeListener("quit", disconnect);
-  }, [char])
+  }, [char]);
   return {
     device: char,
     connected: char != null && char.service.device?.gatt?.connected,

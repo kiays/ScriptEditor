@@ -8,9 +8,7 @@ const App = () => {
   return (
     <div>
       App
-      <button
-        onClick={() => requestDevice()}
-        disabled={connected || connecting}>
+      <button onClick={() => requestDevice()} disabled={connected || connecting}>
         connect
       </button>
       <button

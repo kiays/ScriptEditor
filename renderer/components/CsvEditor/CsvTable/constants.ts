@@ -1,0 +1,7 @@
+export const EDITABLES = {
+  TIME: "TIME",
+  RIGHT_DIR: "RIGHT_DIR",
+  RIGHT_VAL: "RIGHT_VAL",
+  LEFT_DIR: "LEFT_DIR",
+  LEFT_VAL: "LEFT_VAL",
+};

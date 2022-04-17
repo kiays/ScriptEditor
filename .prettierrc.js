@@ -8,4 +8,5 @@ module.exports = {
   arrowParens: "always",
   semi: true,
   singleQuote: false,
+  printWidth: 100,
 };

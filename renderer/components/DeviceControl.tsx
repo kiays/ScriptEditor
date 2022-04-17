@@ -20,7 +20,9 @@ const DeviceControl: FC<Props> = ({ device }) => {
 
   return (
     <div>
-      <button onClick={() => setInversion(!inverted)} disabled={disabled}>invert</button>
+      <button onClick={() => setInversion(!inverted)} disabled={disabled}>
+        invert
+      </button>
       <div>
         <label className="slider-label">Right:{rightVal}</label>
         <input
